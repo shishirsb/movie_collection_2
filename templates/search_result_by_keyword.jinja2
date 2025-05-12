@@ -1,0 +1,27 @@
+{% extends 'web_search.jinja2' %}
+
+{% block search_result_by_keyword %}
+
+<form onsubmit="showLoading()" method='POST'>
+    <div>
+        <br>
+        {% if search_results_keywords %}
+            <table border="1">
+                <tbody>
+                    {% for keyword in search_results_keywords %}
+                        <tr>
+                            <td><b>{{ keyword['name'] }}</b> - ({{ keyword['details'][0] }})</td>
+                            <td>
+                                <button type='submit' name='search-button-keyword' value={{ keyword['id'] }}>Search</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Could not find any keywords...</p>
+        {% endif %}
+    </div>
+</form>
+
+{% endblock %}

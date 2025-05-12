@@ -1,0 +1,45 @@
+{% extends 'base.jinja2' %}
+
+{% block content %}
+<h1>Welcome to the view collection page</h1>
+<form method='POST'>
+    <label for="fields">Choose a search field:</label>
+    <select id="fields" name="fields">
+      <option value="title">Title</option>
+      <option value="viewed">Viewed</option>
+      <option value="other-details">Other-details</option>
+    </select>
+    <label for="search-value"></label>
+    <input name='search-value' type='text' />
+    <input type='submit' name='search-button' value='Search' />
+    <div>
+        <p></p>
+        <table border="1" cellspacing="1">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Other details</th>
+                    <th>Seen?</th>
+                    <th>Your notes</th>
+                    <th>Your Rating</th>
+                    <th>Update collection</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for movie in collection_list %}
+                    <tr>
+                        <td>{{movie['title']}}</td>
+                        <td>{{movie['other_details']}}</td>
+                        <td>{{movie['viewed']}}</td>
+                        <td>{{movie['user_notes']}}</td>
+                        <td>{{movie['user_rating']}}</td>
+                        <td>
+                            <button type='submit' name='update-collection-button' value={{ movie['id'] }}>Update</button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.jinja2' %}
+
+{% block content %}
+<script>
+   function showLoading() {
+      document.getElementById('loading-message').style.display = 'block';
+   }
+</script>
+
+<h1> Welcome to Web search </h1>
+<form onsubmit="showLoading()" method='POST'>
+    <label for="fields">Search By:</label>
+    <select id="field-selection-drop-down" name="search-by">
+      <option value="title">Title</option>
+      <option value="keyword">Keyword</option>
+    </select>
+    <label for="search-value"></label>
+    <input name='search-value' type='text' />
+    <input type='submit' name='search-button' value='Search' />
+
+    <div id="loading-message" style="display: none;">
+        <h3>Please wait, processing...</h3>
+        <div class="spinner"></div> <!-- Optional spinner -->
+    </div>
+
+    {% block search_result_by_title %}
+
+    {% endblock %}
+
+    {% block search_result_by_keyword %}
+
+    {% endblock %}
+
+
+</form>
+
+{% endblock %}

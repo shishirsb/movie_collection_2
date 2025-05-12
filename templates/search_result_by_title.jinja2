@@ -1,0 +1,45 @@
+{% extends 'web_search.jinja2' %}
+
+{% block search_result_by_title %}
+<form onsubmit="showLoading()" method='POST'>
+    <div>
+        <br>
+        {% if search_results %}
+            <table border="1" cellspacing="0" cellpadding="5">
+                <tbody>
+                        <tr>
+                            <th>Title</th>
+                            <th>Duration</th>
+                            <th>PG</th>
+                            <th>Rating</th>
+                            <th>Add movie to Collection</th>
+                            <th>View more content about the movie</th>
+                            <th>View stats and Analysis of the movie</th>
+                        </tr>
+                    {% for movie in search_results %}
+                        <tr>
+                            <td><b>{{ movie['title'] }}</b> {% if movie['other_details'][0] %} ({{ movie['other_details'][0] }}) {% endif %}</td>
+                            <td>{% if movie['other_details'][1] %} {{ movie['other_details'][1] }} {% endif %}</td>
+                            <td>{% if movie['other_details'][2] %} {{ movie['other_details'][2] }} {% endif %}</td>
+                            <td>{% if movie['other_details'][3] %} {{ movie['other_details'][3] }} {% endif %}</td>
+                            <td>
+                                <button type='submit' name='add-to-collection' value={{ movie['id'] }}>Add to Collection</button>
+                            </td>
+                            <td>
+                                <button type='submit' name='more-info' value={{ movie['id'] }}>View more</button>
+                            </td>
+                            <td>
+                                <button type='submit' name='analyze-button' value={{ movie['id'] }}>Analyze</button>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>Could not find any movie titles...</p>
+        {% endif %}
+    </div>
+</form>
+
+{% endblock %}
+

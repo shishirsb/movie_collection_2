@@ -1,0 +1,36 @@
+{% extends 'base.jinja2' %}
+
+{% block movie_details %}
+
+    <div>
+        {% for movie in media_info %}
+            <h1>{{ movie['title'] }}</h1>
+
+            <h3>Summaries</h3>
+            {% for summary in movie['summaries'] %}
+                <p>{{ summary }}</p>
+            {% endfor %}
+
+            <h3>Synopsis</h3>
+            {% for synopsis in movie['synopsis'] %}
+                <p>{{ synopsis }}</p>
+            {% endfor %}
+
+            <h3>Images</h3>
+            {% for img in movie['img_urls'] %}
+                <img src={{ img }}></a>
+            {% endfor %}
+
+            <h3>Violence & Gore</h3>
+            {% for item in movie['violence'] %}
+                <p>{{ item }}</p>
+            {% endfor %}
+
+            <h3>Frightening & Intense Scenes</h3>
+            {% for item in movie['frightening'] %}
+                <p>{{ item }}</p>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

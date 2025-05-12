@@ -1,0 +1,27 @@
+{% extends 'base.jinja2' %}
+
+{% block content %}
+<h1>Update collection page</h1>
+<form method='POST'>
+    <div>
+        {% if updated == 1 %}
+            <p>Update completed</p>
+            <a href= {{ url_for('view_collection') }}>Go back to View collections Page</a>
+            <br>
+            <p>Or, Update again</p>
+        {% endif %}
+
+        <label for="viewed">Viewed (yes/no)</label>
+        <input name='viewed' type='text' /><br><br>
+
+        <label for="user-notes">Your notes</label>
+        <input name='user-notes' type='text' /><br><br>
+
+        <label for="user-rating">Your rating</label>
+        <input name='user-rating' type='text' /><br><br>
+
+        <input type='submit' name='submit-button' value='Submit' />
+    </div>
+
+</form>
+{% endblock %}
